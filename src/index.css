@@ -7,6 +7,7 @@
 .main-index-container-layout{
     display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	margin-top: 2rem;
 	gap: 20px;
 }
 
@@ -21,7 +22,7 @@
 }
 
 .list-container-layout{
-	height: 60vh;
+	height: 40vh;
 	width: 100%;
 	display: grid;
 	grid: "main main second third" 1fr "main main fourth fifth" 1fr /1fr 1fr 1fr 1fr;

@@ -1,13 +1,20 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import { BsFillStarFill, BsUpload, BsDoorOpen, BsChevronDown, BsClock } from "react-icons/bs";
 import { AiOutlineHeart, AiOutlineApartment,AiFillFlag } from "react-icons/ai"
 import { GrLocation} from "react-icons/gr"
 import { HiChevronRight } from "react-icons/hi"
 import { TbBrandSupernova } from "react-icons/tb"
+import { useLocation } from 'react-router-dom';
 
 
 
 const Listing = () => {
+const [singleData, setSingleData] = useState([])
+const location = useLocation()
+useEffect(()=>{
+    setSingleData(location.state)
+},[])
+console.log(singleData);
   return (
     <div className='flex-col space-y-8 w-[95%] mx-auto'>
         {/* heading container */}
@@ -16,7 +23,7 @@ const Listing = () => {
       </div>
       {/* review container */}
       <div className='flex justify-between'>
-        <div className='flex justify-between w-[30%] h-[5vh]'>
+        <div className='lg:flex justify-between lg:w-[30%] sm:w-[100%] h-[5vh]'>
             <div className='flex justify-between'>
             <span className='flex'>
                 <BsFillStarFill className='text-[1rem]'/>
@@ -27,8 +34,8 @@ const Listing = () => {
             </div>
             <span className='text-[0.9rem] underline cursor-pointer'>Saglo, Idaho United States</span>
         </div>
-        <div className='w-[60%] h-[5vh]'>
-            <div className='flex space-x-7 justify-end'>
+        <div className='lg:w-[60%] h-[5vh]'>
+            <div className='hidden lg:flex space-x-7 justify-end'>
                 <div className='flex space-x-2 cursor-pointer'>
                     <BsUpload className='text-[1.2rem] my-[0.2rem]'/>
                     <span className='text-[1rem] underline'>share</span>
@@ -43,24 +50,34 @@ const Listing = () => {
       </div>
         {/* listing images */}
       <div className='list-container-layout'>
-            <div className='main'>1</div>
-            <div className='second'>2</div>
-            <div className='third'>3</div>
-            <div className='fourth'>4</div>
-            <div className='fifth'>5</div>
+            <div className='main'>
+                {/* <img src={singleData[0]?.info.images.data[0].url} className='w-inherit h-fit object-cover'/> */}
+            </div>
+            <div className='second'>
+            {/* <img src={singleData[0]?.info.images.data[1].url} className='w-full h-fit  object-cover'/> */}
+            </div>
+            <div className='third'>
+            {/* <img src={singleData[0]?.info.images.data[2].url} className='w-full h-fit object-cover'/> */}
+            </div>
+            <div className='fourth'>
+            {/* <img src={singleData[0]?.info.images.data[3].url} className='w-full h-fit object-cover'/> */}
+            </div>
+            <div className='fifth'>
+            {/* <img src={singleData[0]?.info.images.data[4].url} className='w-full h-fit object-cover'/> */}
+            </div>
 
       </div>
 
       {/* rental unit details */}
       <div className='flex justify-between'>
         {/* left rental container */}
-        <div className='w-[65%] min-h-[30vh] flex-col space-y-4'>
+        <div className='lg:w-[65%] min-h-[30vh] flex-col space-y-4'>
             <div className='flex justify-between border-b-[1px] border-b-greyish py-3'>
                 <div>
                 <h2 className='text-[1.5rem] font-bold'>Entire rental unit hosted by Nino</h2>
                 <span className='text-xx'>6 guest. 2 bedrooms. 6 beds. 2.5 baths</span>
                 </div>
-                <div className='w-[70px] h-[70px] rounded-full bg-red-600'>
+                <div className='hidden lg:w-[70px] h-[70px] rounded-full bg-red-600'>
                 </div>
             </div>
 
@@ -77,7 +94,7 @@ const Listing = () => {
 
                 <div className='flex justify-between'>
                     <TbBrandSupernova className='text-[2rem]'/>
-                    <div className='w-[94%] flex-col'>
+                    <div className='w-[94%] flex-col sm:ml-3'>
                         <h2 className='text-[1.1rem] font-semibold'>Nino is a Superhost</h2>
                         <span className='text-xx'>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</span>
                     </div>
@@ -117,7 +134,7 @@ const Listing = () => {
         </div>
 
         {/* right rental container */}
-        <div className='w-[30%] min-h-[30vh] flex-col space-y-7'>
+        <div className='hidden lg:w-[30%] min-h-[30vh] lg:flex-col space-y-7'>
 
             {/* reserve container */}
 

@@ -8,8 +8,8 @@ const Search = () => {
     <div>
       <NavBar />
       <div className="flex justify-between">
-        <div className="flex-col space-y-6 w-[65%] pl-[1rem]">
-          <div>
+        <div className="flex-col space-y-6 lg:w-[65%] md:w-full pl-[1rem] mt-3">
+          <div className="mt-2">
             <h1 className="text-[0.9rem]">Over 1,000 places</h1>
           </div>
           <div className="w-inherit flex justify-between border-[1px] border-greyish py-[0.5rem] rounded-xl">
@@ -37,7 +37,8 @@ const Search = () => {
             <SearchCard />
           </div>
         </div>
-        <div>
+
+        <div className="hidden lg:block">
           <h3>Map imaged</h3>
         </div>
       </div>
