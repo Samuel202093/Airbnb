@@ -1,15 +1,18 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 import SearchCard from "../components/SearchCard";
+import { useLocation } from "react-router-dom";
 // import Card from '../components/Card'
 
 const Search = () => {
+    const location = useLocation()
+    console.log(location.state);
   return (
     <div>
       <NavBar />
       <div className="flex justify-between">
-        <div className="flex-col space-y-6 lg:w-[65%] md:w-full pl-[1rem] mt-3">
-          <div className="mt-2">
+        <div className="flex-col space-y-6 lg:w-[65%] md:w-full pl-[0.8rem] mt-3">
+          <div className="mt-2 hidden md:block">
             <h1 className="text-[0.9rem]">Over 1,000 places</h1>
           </div>
           <div className="w-inherit flex justify-between border-[1px] border-greyish py-[0.5rem] rounded-xl">

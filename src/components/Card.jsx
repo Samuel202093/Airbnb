@@ -22,15 +22,16 @@ const Card = ({data}) => {
         return (
           <div className="relative" key={index} onClick={()=> handleNavigation(x.info.id, x)}>
             {/* Image container div */}
-            <div className="h-[300px] w-[300px]y rounded-lg">
+            <div className="imgContainer h-[300px] w-[300px]y rounded-lg">
               <img
                 src={x.info.images.data[0].url}
                 className="h-full w-full object-cover rounded-xl cursor-pointer"
               />
+            <AiFillRightCircle className='circleIcon text-[1.8rem] absolute top-[35%] right-[5%] text-white'/>
+
             </div>
             {/* like Icon */}
-            <BsHeartFill className="absolute top-3 right-3" />
-            <AiFillRightCircle className='text-[1.8rem] absolute top-[35%] right-[5%] text-white'/>
+            <BsHeartFill className="absolute top-3 right-3 text-white" />
 
             {/* Name and rating container */}
             <div className="flex justify-between mt-3">

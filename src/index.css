@@ -21,8 +21,25 @@
 	gap: 20px;
 }
 
+/* .search:focus-within .inputWrapper{
+	 border: 3px solid yellow;
+} */
+
+.inputWrapper{
+	border: 5px solid red;
+}
+.imgContainer:hover .circleIcon{
+	display: block;
+	transition: ease-in 0.3s;
+}
+
+
+.circleIcon{
+	display: none;
+}
+
 .list-container-layout{
-	height: 40vh;
+	min-height: 40vh;
 	width: 100%;
 	display: grid;
 	grid: "main main second third" 1fr "main main fourth fifth" 1fr /1fr 1fr 1fr 1fr;
@@ -31,23 +48,23 @@
 }
 .main { 
 	grid-area: main; 
-	border: 1px solid red;
+	height: 63vh;
 }
 .second { 
 	grid-area: second; 
-	border: 1px solid green;
+	height: 30vh;
 }
 .third { 
 	grid-area: third; 
-	border: 1px solid brown;
+	height: 30vh;
 }
 .fourth { 
 	grid-area: fourth;
-	border: 1px solid purple;
+	height: 30vh;
 }
 .fifth { 
 	grid-area: fifth;
-	border: 1px solid peru; 
+	height: 30vh;
 }
 
 
@@ -119,4 +136,29 @@
   .input:checked + .slider:before {
 	transform: translateX(1.5em);
 	outline-color: #181818;
+  }
+
+  @media only screen and (max-width: 600px){
+	.list-container-layout{
+		display: grid;
+		grid-template-columns: repeat(1, 1fr);
+	}
+	.main { 
+		width: 110%;
+		/* border: 2px solid yellow; */
+		/* display: none; */
+	}
+
+	.main img{
+		width: fit-content;
+		border-top-right-radius: 15px;
+		border-bottom-right-radius: 15px;
+	}
+	.second, 
+	.third, 
+	.fourth, 
+	.fifth { 
+		display: none;
+	}
+	
   }

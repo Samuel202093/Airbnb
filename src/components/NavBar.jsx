@@ -26,7 +26,7 @@ const NavBar = () => {
         className="flex-col justify-center items-center gap-1 md:min-w-[15%]y min-h-[5vh]y opacity-[0.5] cursor-pointer"
       >
         <Icon className="text-xl mx-auto" />
-        <span className="text-xs mx-auto">{name}</span>
+        <span className="text-xs md:mx-auto">{name}</span>
       </div>
     );
   });
@@ -71,7 +71,7 @@ const NavBar = () => {
           </div>
 
           {/* desktop view */}
-          <div className="hidden md:flex lg:py-[0.3rem] md:py-[0.9rem] px-[0.5rem] md:px-[0.4rem] border-[1px] border-greyish gap-2 rounded-[100px] lg:h-[8vh] h-[7vh] w-fit mt-2">
+          <div className="hidden md:flex lg:py-[0.5rem] md:py-[0.9rem] px-[0.5rem] md:px-[0.4rem] border-[1px] border-greyish gap-2 rounded-[100px] lg:h-[8vh] h-[7vh] w-fit mt-2">
             <span
               className="py-[0.2rem] lg:px-[0.68rem] md:px-[0.2rem] border-r-[1px] border-greyish cursor-pointer"
               onClick={handleShow}
@@ -79,25 +79,25 @@ const NavBar = () => {
               Anywhere
             </span>
             <span
-              className="py-[0.2rem] lg:px-[0.68rem] md:px-[0.7rem] border-r-[1px] border-greyish cursor-pointer md:text-[0.86rem]"
+              className="py-[0.3rem] lg:px-[0.68rem] md:px-[0.7rem] border-r-[1px] border-greyish cursor-pointer md:text-[0.86rem]"
               onClick={handleShow}
             >
               Any Week
             </span>
             <span
-              className="py-[0.2rem] lg:px-[0.68rem] border-r-[1px] border-greyish cursor-pointer"
+              className="py-[0.3rem] lg:px-[0.68rem] border-r-[1px] border-greyish cursor-pointer md:text-[0.86rem]"
               onClick={handleShow}
             >
               Any guest
             </span>
-            <div className="h-[40px] w-[40px] lg:mt-[-0.3rem] cursor-pointer bg-red-500 rounded-full">
+            <div className="h-[40px] w-[40px] lg:mt-[-0.2rem] cursor-pointer bg-red-500 rounded-full">
               <BsSearch className="text-2xl text-[#ffff] transform translate-x-[10px] translate-y-[10px]" />
             </div>
           </div>
         </div>
         {modalShow && <Modal />}
 
-        <div className="hidden md:flex w-[30%] md:w-[35%] h-[10vh] justify-around py-[1.2rem] px-[1rem] mt-[-1rem]">
+        <div className="hidden md:flex w-[30%] md:w-[35%] h-[10vh] justify-around py-[1.2rem] md:py-[2rem] px-[1rem] md:px-[0.5rem] mt-[-1rem]">
           <div className="flex justify-between px-[1rem] py-[0.5rem]">
             <span>
               <a href={`/contact`} className="lg:text-[1rem] md:text-[0.7rem]">
@@ -108,11 +108,11 @@ const NavBar = () => {
 
           <div className="">
             <span className="">
-              <TbWorld className="text-[1.3rem] my-2 lg:my-[0.8rem]" />
+              <TbWorld className="text-[1.3rem] my-2 md:my-3 lg:my-[0.8rem]" />
             </span>
           </div>
 
-          <div className="lg:w-[25%] h-[6vh] rounded-[100px] flex justify-around px-[0.35rem] py-[0.3rem] lg:border-[1px] lg:border-greyish mt-1 lg:px-1">
+          <div className="lg:w-[25%] h-[6vh] rounded-[100px] flex justify-around px-[0.35rem] py-[0.5rem] lg:border-[1px] lg:border-greyish mt-1 lg:px-1">
             <span>
               <RxHamburgerMenu className="text-[1.3rem] md:ml-[0.5rem]" />
             </span>
@@ -126,7 +126,7 @@ const NavBar = () => {
 
       {/* links section */}
       <div className="flex justify-betweeny items-center lg:p-[1rem]">
-        <div className="flex lg:gap-[0.8rem] md:gap-[0.2rem]y justify-around lg:px-4 lg:w-[85%] md:w-[100%] sm:w-[100%] sm:overflow-x-scrolly">
+        <div className="flex lg:gap-[0.8rem] md:gap-[0.2rem]y justify-around lg:px-4 lg:w-[85%] md:w-[100%] sm:w-[100%]">
           {displayList ? displayList.slice(0, 10) : ""}
         </div>
         <div className="hidden w-[15%] pr-[2rem] lg:flex lg:flexy justify-between  items-center gap-x-4 pl-[1.5rem]">
