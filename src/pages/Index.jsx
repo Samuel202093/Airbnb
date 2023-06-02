@@ -20,7 +20,7 @@ const Index = () => {
   useEffect(()=>{
     handleFetch()
   },[])
-  console.log(data)
+ 
 
   return (
     <div className='w-[95%] mx-auto'>

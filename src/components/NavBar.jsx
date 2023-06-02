@@ -11,27 +11,7 @@ import { linkData } from "../data/data";
 import { useModalContext } from "../context/data";
 
 const NavBar = () => {
-  // const [listItem, setListItem] = useState(false);
-  // const [lessMenu, setLessMenu] = useState(false);
   const { handleShow, modalShow, windowWidth } = useModalContext();
-
-  // const handleMobileView = () => {
-  //   setWindowWidth(window.innerWidth)
-  //    if (windowWidth < 600) {
-  //   setLessMenu(true)
-  //   console.log("window width!!!!!!!!!!!!!!!!!!!!")
-  // }else{
-  //   setLessMenu(false)
-  // }
-  // };
-
-
-  // useEffect(() => {
-  //   window.addEventListener("resize", handleMobileView);
-  //   return () => window.removeEventListener("resize", handleMobileView);
-  // },[]);
-
-
 
   const displayList = linkData.map((x) => {
     // destructuring x to get the name, icon, and id.
@@ -143,7 +123,7 @@ const NavBar = () => {
       {/* links section */}
       <div className="flex justify-betweeny items-center lg:p-[1rem]">
         <div className="flex md:gap-[0.8rem] gap-6 justify-around lg:px-4 lg:w-[85%] md:w-[100%] sm:w-[100%]y">
-          {/* {displayList ? displayList.slice(0, 10) : ""} */}
+         
           {windowWidth < 600 ? displayList.slice(0, 5) : displayList.slice(0, 10) }
         </div>
         <div className="hidden w-[15%] pr-[2rem] lg:flex lg:flexy justify-between  items-center gap-x-4 pl-[1.5rem]">

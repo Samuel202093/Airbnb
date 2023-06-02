@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BsFillStarFill } from "react-icons/bs";
 import { AiOutlineRightCircle, AiFillRightCircle } from "react-icons/ai";
-// import { AiOutlineHeart } from "react-icons/ai"
 import { BsHeartFill } from "react-icons/bs";
 import { cardData } from "../data/data";
 import axios from "axios";

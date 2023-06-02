@@ -9,9 +9,8 @@ import {
 } from "@material-ui/pickers";
 import { useModalContext } from "../context/data";
 import getCenter from "geolib/es/getCenter";
-import ReactMapGL, { Marker, NavigationControl } from "react-map-gl";
+// import ReactMapGL, { Marker, NavigationControl } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import Select from "react-select"
 import axios from "axios";
 
 const locations = [
@@ -38,14 +37,9 @@ const locations = [
 
 const ModalDrop = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [searchResult, setSearchResult] = useState([]);
   const [inputValue, setInputValue] = useState("")
   const [suggestions, setSuggestions] = useState();
-//   const [coordinates, setCoordinates] = useState()
-//   const [center, setCenter] = useState()
-  const [viewport, setViewport] = useState();
-  const { handleShow, setModalShow, modalShow, windowWidth } =
-    useModalContext();
+  const { handleShow, setModalShow, modalShow, windowWidth } = useModalContext();
 
 const navigate = useNavigate()
 
@@ -72,86 +66,23 @@ const navigate = useNavigate()
 
   const handleSearch = async(e)=>{
     e.preventDefault()
-    console.log("search")
    const result = await axios.get( `https://listing-api-c19z.onrender.com/data?info.location.city_like=${inputValue}`)
     .then((res)=>{
       console.log(res.data)
-      // setSearchResult(res.data)
       return res.data
-      // console.log(`data:${res.data}`)
-      //   console.log(res.status)
     })
     .catch((error)=>{
         console.log(error)
     })
     console.log(result)
-    setSearchResult(result)
-    // console.log("samuel")
-    // console.log(searchResult)
-    // console.log("Raymond Frontend")
     const coordinates = result.map((coord)=>({
         longitude: coord.info.location.long,
         latitude: coord.info.location.lat,
     }))
     const center = getCenter(coordinates)
-
-    setViewport({
-        longitude: center.longitude,
-        latitude: center.latitude,
-        zoom: 8,
-    })
-    console.log(viewport)
-    console.log(searchResult)
-    console.log(inputValue)
-
-    // navigate('/search', {state:[inputValue, viewport, searchResult]})
+    navigate('/search', {state:[inputValue, center, result]})
     setModalShow(!modalShow)
-    // console.log("raymond")
   }
-
-//   const handleSubmit = async () => {
-    // if (event.key == "Enter") {
-    //   const data = await (
-    //     await fetch(
-    //       `https://listing-api-c19z.onrender.com/data?info.location.city_like=${inputValue}`
-    //     )
-    //   ).json();
-    // await axios.get(`https://listing-api-c19z.onrender.com/data?info.location.city_like=${inputValue}`)
-    // .then((res)=>{
-    //     setSearchResult(res.data)
-    // })
-    // .catch((err)=>{
-    //     console.log(err)
-    // })
-
-    // console.log(searchResult)
-
-      // set state when the data received
-    //   const coordinates = searchResult.map((coord) => ({
-    //     longitude: coord.info.location.long,
-    //     latitude: coord.info.location.lat,
-    //   }));
-    //   const center = getCenter(coordinates);
-    //   setViewport({
-    //     longitude: center.longitude,
-    //     latitude: center.latitude,
-    //     zoom: 8,
-    //   });
-    // }
-//   };
-
-//   const handleSearch = async(e)=>{
-//     e.preventDefault()
-//     if (inputValue === false) {
-//         return
-//     }
-//     await handleSubmit()
-//     // navigate("/search", {state: [inputValue, viewport, searchResult]})
-//     setModalShow(!modalShow)
-//   }
-
-//   console.log(searchResult)
-
 
   useEffect(() => {
     document.addEventListener("scroll", handleScrollOutOfView);
@@ -176,7 +107,6 @@ const navigate = useNavigate()
           className="w-full h-[6vh] rounded-[100px] pl-[0.2rem] focus:outline-none text-[0.9rem] bg-inherit cursor-pointer"
           value={inputValue}
           onChange={(e) => handleChange(e.target.value)}
-        //   onKeyDown={(e) => handleSubmit(e)}
         />
          
 
@@ -236,7 +166,7 @@ const navigate = useNavigate()
           className="h-[80vh] bg-[rgba(0,0,0,0.8)] w-full mt-5y"
           onClick={handleShow}
         ></div>
-        {/* <h2>Modal</h2> */}
+        
       </div>
     </div>
   );

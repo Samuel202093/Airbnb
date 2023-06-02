@@ -4,7 +4,6 @@ import { AiOutlineHeart, AiOutlineApartment,AiFillFlag,  AiFillHeart, AiFillLeft
 import { GrLocation} from "react-icons/gr"
 import { HiChevronRight } from "react-icons/hi"
 import { TbBrandSupernova } from "react-icons/tb"
-import img from '../assets/img/dog.jpg'
 import { useLocation } from 'react-router-dom';
 
 
@@ -12,10 +11,11 @@ import { useLocation } from 'react-router-dom';
 const Listing = () => {
 const [singleData, setSingleData] = useState([])
 const location = useLocation()
+
 useEffect(()=>{
     setSingleData(location.state)
 },[])
-console.log(singleData);
+
   return (
     <div className='flex-col space-y-8 w-[95%] mx-auto'>
         {/* heading container */}

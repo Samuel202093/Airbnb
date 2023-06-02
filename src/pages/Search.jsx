@@ -2,15 +2,19 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import SearchCard from "../components/SearchCard";
 import { useLocation } from "react-router-dom";
-// import Card from '../components/Card'
+import ReactMapGL, { Marker, NavigationControl } from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
+
 
 const Search = () => {
     const location = useLocation()
-    console.log(location.state);
+    const viewport = location.state[1]
+    const resultCity = location.state[2]
+    
   return (
     <div>
       <NavBar />
-      <div className="flex justify-between">
+      <div className="flex justify-between gap-5">
         <div className="flex-col space-y-6 lg:w-[65%] md:w-full pl-[0.8rem] mt-3">
           <div className="mt-2 hidden md:block">
             <h1 className="text-[0.9rem]">Over 1,000 places</h1>
@@ -36,13 +40,26 @@ const Search = () => {
             </div>
             {/* <input type='checkbox'/> */}
           </div>
-          <div className="search-index-container-layout">
-            <SearchCard />
+          <div className="w-full">
+            <SearchCard result={resultCity}/>
           </div>
         </div>
 
-        <div className="hidden lg:block">
-          <h3>Map imaged</h3>
+        <div className="hidden md:block min-h-[30vh] w-[35%]">
+        
+          <ReactMapGL
+            mapboxAccessToken={import.meta.env.VITE_APP_MAP_TOKEN}
+            {...viewport}
+            mapStyle="mapbox://styles/mapbox/streets-v11"
+          >
+            <Marker
+              longitude={viewport.longitude}
+              latitude={viewport.latitude}
+            />
+            <NavigationControl position="top-right" />
+            {/* <Geocoder /> */}
+          </ReactMapGL>
+      
         </div>
       </div>
     </div>
