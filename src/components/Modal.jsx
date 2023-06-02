@@ -44,7 +44,7 @@ const ModalDrop = () => {
 //   const [coordinates, setCoordinates] = useState()
 //   const [center, setCenter] = useState()
   const [viewport, setViewport] = useState();
-  const { handleShow, setModalShow, modalShow } =
+  const { handleShow, setModalShow, modalShow, windowWidth } =
     useModalContext();
 
 const navigate = useNavigate()
@@ -68,51 +68,89 @@ const navigate = useNavigate()
     setSuggestions(results);
   };
 
-  const handleSubmit = async () => {
+  console.log(inputValue)
+
+  const handleSearch = async(e)=>{
+    e.preventDefault()
+    console.log("search")
+   const result = await axios.get( `https://listing-api-c19z.onrender.com/data?info.location.city_like=${inputValue}`)
+    .then((res)=>{
+      console.log(res.data)
+      // setSearchResult(res.data)
+      return res.data
+      // console.log(`data:${res.data}`)
+      //   console.log(res.status)
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
+    console.log(result)
+    setSearchResult(result)
+    // console.log("samuel")
+    // console.log(searchResult)
+    // console.log("Raymond Frontend")
+    const coordinates = result.map((coord)=>({
+        longitude: coord.info.location.long,
+        latitude: coord.info.location.lat,
+    }))
+    const center = getCenter(coordinates)
+
+    setViewport({
+        longitude: center.longitude,
+        latitude: center.latitude,
+        zoom: 8,
+    })
+    console.log(viewport)
+    console.log(searchResult)
+    console.log(inputValue)
+
+    // navigate('/search', {state:[inputValue, viewport, searchResult]})
+    setModalShow(!modalShow)
+    // console.log("raymond")
+  }
+
+//   const handleSubmit = async () => {
     // if (event.key == "Enter") {
     //   const data = await (
     //     await fetch(
     //       `https://listing-api-c19z.onrender.com/data?info.location.city_like=${inputValue}`
     //     )
     //   ).json();
-    const data = axios.get(`https://listing-api-c19z.onrender.com/data?info.location.city_like=${inputValue}`)
-    .then((res)=>{
-        setSearchResult(res.data)
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
+    // await axios.get(`https://listing-api-c19z.onrender.com/data?info.location.city_like=${inputValue}`)
+    // .then((res)=>{
+    //     setSearchResult(res.data)
+    // })
+    // .catch((err)=>{
+    //     console.log(err)
+    // })
 
-    console.log(searchResult)
+    // console.log(searchResult)
 
-    //   console.log(inputValue)
-
-    //   setSearchResult(data);
       // set state when the data received
-      const coordinates = data.map((coord) => ({
-        longitude: coord.info.location.long,
-        latitude: coord.info.location.lat,
-      }));
-      const center = getCenter(coordinates);
-      setViewport({
-        longitude: center.longitude,
-        latitude: center.latitude,
-        zoom: 8,
-      });
+    //   const coordinates = searchResult.map((coord) => ({
+    //     longitude: coord.info.location.long,
+    //     latitude: coord.info.location.lat,
+    //   }));
+    //   const center = getCenter(coordinates);
+    //   setViewport({
+    //     longitude: center.longitude,
+    //     latitude: center.latitude,
+    //     zoom: 8,
+    //   });
     // }
-  };
+//   };
 
-  const handleSearch = async(e)=>{
-    e.preventDefault()
-    if (inputValue === false) {
-        return
-    }
-    await handleSubmit()
-    navigate("/search", {state: [inputValue, viewport, searchResult]})
-    setModalShow(!modalShow)
-  }
+//   const handleSearch = async(e)=>{
+//     e.preventDefault()
+//     if (inputValue === false) {
+//         return
+//     }
+//     await handleSubmit()
+//     // navigate("/search", {state: [inputValue, viewport, searchResult]})
+//     setModalShow(!modalShow)
+//   }
 
-  console.log(searchResult)
+//   console.log(searchResult)
 
 
   useEffect(() => {
@@ -138,7 +176,7 @@ const navigate = useNavigate()
           className="w-full h-[6vh] rounded-[100px] pl-[0.2rem] focus:outline-none text-[0.9rem] bg-inherit cursor-pointer"
           value={inputValue}
           onChange={(e) => handleChange(e.target.value)}
-          onKeyDown={(e) => handleSubmit(e)}
+        //   onKeyDown={(e) => handleSubmit(e)}
         />
          
 
@@ -174,7 +212,7 @@ const navigate = useNavigate()
                 />
               </MuiPickersUtilsProvider>
             </div>
-            <div className="flex justify-between hover:rounded-[100px] hover:bg-[#b2acab] md:px-5 py-2 ease-in duration-100 cursor-pointer">
+            <div className="flex justify-between hover:rounded-[100px] md:hover:bg-[#b2acab] md:px-5 py-2 ease-in duration-100 cursor-pointer">
               <div className="flex-col lg:px-3">
                 <label className="text-[0.9rem]">Who</label>
                 <input
@@ -184,9 +222,9 @@ const navigate = useNavigate()
                 />
               </div>
               <div className="relative">
-                <button className="flex bg-[#db0c63] text-white text-[1rem] h-[5vh]y md:px-[1.7rem] py-[0.9rem] rounded-full mt-[0.5rem]" onClick={(e)=> handleSearch(e)}>
+                <button className="flex bg-[#db0c63] text-white text-[1rem] h-[5vh]y md:px-[1.7rem] px-5 py-[0.9rem] rounded-full mt-[0.5rem]" onClick={handleSearch}>
                   <BsSearch className="hidden text-white text-xl lg:block translate-x-[-8px] translate-y-[4px]" />
-                  search
+                  {windowWidth < 600 ? <BsSearch className="text-[1.2rem]"/> : "search"}
                 </button>
               </div>
             </div>
