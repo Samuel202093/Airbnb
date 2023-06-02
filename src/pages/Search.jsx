@@ -38,14 +38,14 @@ const Search = () => {
                 </span>
               </label>
             </div>
-            {/* <input type='checkbox'/> */}
+           
           </div>
           <div className="w-full">
             <SearchCard result={resultCity}/>
           </div>
         </div>
 
-        <div className="hidden md:block min-h-[30vh] w-[35%]">
+        <div className="hidden lg:block min-h-[30vh] w-[35%] border-[1px] border-black">
         
           <ReactMapGL
             mapboxAccessToken={import.meta.env.VITE_APP_MAP_TOKEN}
@@ -57,7 +57,7 @@ const Search = () => {
               latitude={viewport.latitude}
             />
             <NavigationControl position="top-right" />
-            {/* <Geocoder /> */}
+           
           </ReactMapGL>
       
         </div>
